@@ -8,7 +8,7 @@
 
 ### The algorithms implemented must be:
 
-- Spatial filtering: low-pass Gaussian filtering, Laplacian sharpening filter, image sharpening using the gradient. /rr/
+- Spatial filtering: low-pass Gaussian filtering, Laplacian sharpening filter, image sharpening using the gradient. /rr/ /in/
 - Non-linear spatial filtering: noise reduction using median filtering. /tk/ 
 - Sobel edge detection on a gray-scale image. /at/
 - Canny edge detection on a gray-scale image (optional).

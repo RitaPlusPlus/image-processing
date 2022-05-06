@@ -4,11 +4,14 @@
 
 - graphical user interface; /in/
 - opens popular raster image formats like jpg, png;
- -can apply a set of image processing algorithms, visualize the result, and save the resulting image as a file
+- can apply a set of image processing algorithms, visualize the result, and save the resulting image as a file
 
 ### The algorithms implemented must be:
 
-- Spatial filtering: low-pass Gaussian filtering, Laplacian sharpening filter, image sharpening using the gradient. /rr/ /in/
+- Spatial filtering: 
+-- low-pass Gaussian filtering /rr/, 
+-- Laplacian sharpening filter /rr/, 
+-- image sharpening using the gradient /in/.
 - Non-linear spatial filtering: noise reduction using median filtering. /tk/ 
 - Sobel edge detection on a gray-scale image. /at/
 - Canny edge detection on a gray-scale image (optional).

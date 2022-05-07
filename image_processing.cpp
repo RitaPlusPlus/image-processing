@@ -1,5 +1,6 @@
 #include "image_processing.h"
 #include "ui_image_processing.h"
+#include "filter.h"
 #include <QString>
 #include <QPixmap>
 #include <QMessageBox>
@@ -9,6 +10,7 @@ Image_Processing::Image_Processing(QWidget *parent)
     , ui(new Ui::Image_Processing)
 {
     ui->setupUi(this);
+    this->on_pushB_Upload_clicked();
 }
 
 Image_Processing::~Image_Processing()
@@ -16,13 +18,20 @@ Image_Processing::~Image_Processing()
     delete ui;
 } /* ~Image_Processing */
 
+void Image_Processing::on_pushB_Gaussian_clicked()
+{
+    Filter blur(ui->radius_spin->value(), ui->sigma_spin->value()); // radius, sigma ( default)
+    this->sourceImage = blur.apply(this->sourceImage);
+
+    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+}
 
 void Image_Processing::on_pushB_Upload_clicked()
 {
     //get the file image from
-    QString filename;
+    QString filename = "/Users/radoslavradev/Desktop/Screenshot 2022-05-05 at 16.30.03.png";
 
-    filename = QFileDialog::getOpenFileName(this,tr("Choose"),"",tr("Images (*.tiff *.png *.jpg *.jpeg)"));
+//    filename = QFileDialog::getOpenFileName(this,tr("Choose"),"",tr("Images (*.tiff *.png *.jpg *.jpeg)"));
 
     ui->label_image->setBackgroundRole(QPalette::Base);
     ui->label_image->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -31,15 +40,13 @@ void Image_Processing::on_pushB_Upload_clicked()
     //check if it is a valid file
     if (QString::compare(filename, QString()) != 0)
     {
-        bool valid = image.load(filename);
-
-        if(valid)
+        if(sourceImage.load(filename))
         {
-            ui->label_image->setPixmap(QPixmap::fromImage(image));
+            ui->label_image->setPixmap(QPixmap::fromImage(sourceImage));
         }
         else
         {
-            //Error handling
+            // Error handling
             QMessageBox::critical(this,"Error","Error!");
         }
     }
@@ -48,7 +55,7 @@ void Image_Processing::on_pushB_Upload_clicked()
 
 void Image_Processing::on_pushB_Download_clicked()
 {
-    if (!image.isNull())
+    if (!sourceImage.isNull())
     {
        QString fileName;
        fileName =  QFileDialog::getSaveFileName(this, "Save as", "image file", "PNG(*.png);; JPEG(*.jpg *.jpeg);; TIFF(*.tiff *.tif)");
@@ -67,9 +74,9 @@ void Image_Processing::on_pushB_Download_clicked()
 
 void Image_Processing::on_pushB_deleteImage_clicked()
 {
-    if (!image.isNull())
+    if (!sourceImage.isNull())
     {
-        image = QImage();
+        sourceImage = QImage();
         ui->label_image->clear(); //this removes the pixmap of the label
     }
     else

@@ -9,9 +9,14 @@
 ### The algorithms implemented must be:
 
 - Spatial filtering: 
-  - low-pass Gaussian filtering /rr/, 
+  - low-pass Gaussian smoothing filtering /rr/, 
   - Laplacian sharpening filter /rr/, 
   - image sharpening using the gradient /in/.
 - Non-linear spatial filtering: noise reduction using median filtering. /tk/ 
 - Sobel edge detection on a gray-scale image. /at/
 - Canny edge detection on a gray-scale image (optional).
+
+
+Tasks:
+- Implement history (Cmd + Z)
+- Make the filter abstract class when the other filters are implemented, since we may use many of its current functions

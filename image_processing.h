@@ -18,6 +18,8 @@ public:
 
 private slots:
 
+    void on_pushB_Gaussian_clicked();
+
     void on_pushB_Upload_clicked();
 
     void on_pushB_Download_clicked();
@@ -27,7 +29,7 @@ private slots:
 private:
     Ui::Image_Processing *ui;
 
-    QImage image;
+    QImage sourceImage;
     /*
      * QImage is designed and optimized for I/O,
      * and for direct pixel access and manipulation,

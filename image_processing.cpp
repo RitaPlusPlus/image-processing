@@ -10,7 +10,7 @@ Image_Processing::Image_Processing(QWidget *parent)
     , ui(new Ui::Image_Processing)
 {
     ui->setupUi(this);
-    this->on_pushB_Upload_clicked();
+//    this->on_pushB_Upload_clicked();
 }
 
 Image_Processing::~Image_Processing()
@@ -29,9 +29,9 @@ void Image_Processing::on_pushB_Gaussian_clicked()
 void Image_Processing::on_pushB_Upload_clicked()
 {
     //get the file image from
-    QString filename = "/Users/radoslavradev/Desktop/Screenshot 2022-05-05 at 16.30.03.png";
+    QString filename;
 
-//    filename = QFileDialog::getOpenFileName(this,tr("Choose"),"",tr("Images (*.tiff *.png *.jpg *.jpeg)"));
+    filename = QFileDialog::getOpenFileName(this,tr("Choose"),"",tr("Images (*.tiff *.png *.jpg *.jpeg)"));
 
     ui->label_image->setBackgroundRole(QPalette::Base);
     ui->label_image->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);

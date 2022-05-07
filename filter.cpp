@@ -11,12 +11,25 @@ void Filter::initKernel()
         size = 2 * radius + (radius % 2);
         kernel = new double* [size];
 
-        for (int row = 0; row < size; row++) {
+        for (int row = 0; row < size; row++)
+        {
             kernel[row] = new double [size];
-            for (int col = 0; col < size; col++) {
+            for (int col = 0; col < size; col++)
+            {
                 kernel[row][col] = getKernelForPoint(row, col, radius);
             }
         }
+
+        // TODO: Laplacian sharpening
+//        kernel[0][0] = 0;
+//        kernel[0][1] = 1;
+//        kernel[0][2] = 0;
+//        kernel[1][0] = 1;
+//        kernel[1][1] = 4;
+//        kernel[1][2] = 1;
+//        kernel[2][0] = 0;
+//        kernel[2][1] = 1;
+//        kernel[2][2] = 0;
     }
 }
 

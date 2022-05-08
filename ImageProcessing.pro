@@ -11,7 +11,8 @@ CONFIG += c++17
 SOURCES += \
     filter.cpp \
     main.cpp \
-    image_processing.cpp
+    image_processing.cpp \
+    sobel.cpp
 
 HEADERS += \
     filter.h \

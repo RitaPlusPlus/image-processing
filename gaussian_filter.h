@@ -1,11 +1,11 @@
-#ifndef FILTER_H
-#define FILTER_H
+#ifndef GAUSSIAN_FILTER_H
+#define GAUSSIAN_FILTER_H
 
 #include <QTextStream>
 #include <QImage>
 #include <qmath.h>
 
-class Filter {
+class GaussianFilter {
 private:
     //! pixels on the screen blend into each other
     /*!
@@ -17,7 +17,7 @@ private:
     double **kernel;
 
 private:
-    double getKernelForPoint(const int row, const int col, const int radius) const;
+    double getGaussianKernelForPoint(const int row, const int col, const int radius) const;
     void initKernel();
     void init(const QPoint &center, const QImage &image, QRgb **matrix);
     QRgb transform(QRgb** matrix);
@@ -34,14 +34,14 @@ private:
     void free();
 
 public:
-    Filter(int radius = 1, double sigma = 1.0);
+    GaussianFilter(int radius = 1, double sigma = 1.0);
 //    Filter(const Filter &original);
-    ~Filter();
+    ~GaussianFilter();
 
-    QImage apply(const QImage input);
+    void apply(QImage &input);
 
 //    const Filter &operator = (const Filter &blur);
 //    friend QTextStream &operator << (QTextStream &stream, const Filter &blur);
 };
 
-#endif // FILTER_H
+#endif // GAUSSIAN_FILTER_H

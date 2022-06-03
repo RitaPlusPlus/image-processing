@@ -17,20 +17,6 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="10" column="0">
-       <widget class="QPushButton" name="pushB_Upload">
-        <property name="text">
-         <string>Upload</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" rowspan="8">
-       <widget class="QLabel" name="label_image">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0" colspan="2">
        <widget class="QLabel" name="label_title">
         <property name="font">
@@ -45,28 +31,97 @@
         </property>
        </widget>
       </item>
-      <item row="10" column="1">
-       <widget class="QPushButton" name="pushB_deleteImage">
-        <property name="text">
-         <string>Delete image</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="1">
-       <widget class="QPushButton" name="pushB_Cancel">
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="0">
+      <item row="13" column="0">
        <widget class="QPushButton" name="pushB_Download">
         <property name="text">
          <string>Download</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="0" colspan="2">
+      <item row="12" column="0">
+       <widget class="QPushButton" name="pushB_Upload">
+        <property name="text">
+         <string>Upload</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QPushButton" name="pushB_Cancel">
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Low-pass Gaussian Blur</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Radius:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="radius_spin">
+          <property name="maximumSize">
+           <size>
+            <width>129</width>
+            <height>21</height>
+           </size>
+          </property>
+          <property name="prefix">
+           <string/>
+          </property>
+          <property name="value">
+           <number>3</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Sigma</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="sigma_spin">
+          <property name="decimals">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <double>100.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+          <property name="value">
+           <double>1.400000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushB_Gaussian">
+          <property name="text">
+           <string>Apply</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="11" column="0" colspan="2">
        <widget class="QGroupBox" name="groupB_filters">
         <property name="font">
          <font>
@@ -124,65 +179,26 @@
         </layout>
        </widget>
       </item>
-      <item row="1" column="1">
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Low-pass Gaussian Blur</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Radius:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="radius_spin">
-          <property name="maximumSize">
-           <size>
-            <width>129</width>
-            <height>21</height>
-           </size>
-          </property>
-          <property name="prefix">
-           <string/>
-          </property>
-          <property name="value">
-           <number>3</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Sigma</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="sigma_spin">
-          <property name="value">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushB_Gaussian">
-          <property name="text">
-           <string>Apply</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+      <item row="12" column="1">
+       <widget class="QPushButton" name="pushB_deleteImage">
+        <property name="text">
+         <string>Delete image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" rowspan="8">
+       <widget class="QLabel" name="label_image">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="pushB_Laplacian">
+        <property name="text">
+         <string>Laplacian</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

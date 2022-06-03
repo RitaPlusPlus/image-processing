@@ -1,12 +1,14 @@
-#include "filter.h"
+#include "gaussian_filter.h"
 
-double Filter::getKernelForPoint(const int row, const int col, const int radius) const
+// Gaussian standard deviation
+double GaussianFilter::getGaussianKernelForPoint(const int row, const int col, const int radius) const
 {
     return (1.0 / (2 * M_PI * pow(sigma, 2)) * exp ( - (pow(row - radius, 2) + pow(col - radius, 2)) / (2 * pow(sigma, 2))));
 }
 
-void Filter::initKernel()
+void GaussianFilter::initKernel()
 {
+//    // Gauusian
     if(radius > 0) {
         size = 2 * radius + (radius % 2);
         kernel = new double* [size];
@@ -16,25 +18,35 @@ void Filter::initKernel()
             kernel[row] = new double [size];
             for (int col = 0; col < size; col++)
             {
-                kernel[row][col] = getKernelForPoint(row, col, radius);
+                kernel[row][col] = getGaussianKernelForPoint(row, col, radius);
             }
         }
-
-        // TODO: Laplacian sharpening
-//        kernel[0][0] = 0;
-//        kernel[0][1] = 1;
-//        kernel[0][2] = 0;
-//        kernel[1][0] = 1;
-//        kernel[1][1] = 4;
-//        kernel[1][2] = 1;
-//        kernel[2][0] = 0;
-//        kernel[2][1] = 1;
-//        kernel[2][2] = 0;
     }
+
+
+    // Laplacian
+//    if(radius > 0) {
+//        size = 3;
+//        kernel = new double* [size];
+
+//        for (int row = 0; row < size; row++)
+//        {
+//            kernel[row] = new double [size];
+//        }
+//        kernel[0][0] = 0;
+//        kernel[0][1] = -1;
+//        kernel[0][2] = 0;
+//        kernel[1][0] = -1;
+//        kernel[1][1] = 4;
+//        kernel[1][2] = -1;
+//        kernel[2][0] = 0;
+//        kernel[2][1] = -1;
+//        kernel[2][2] = 0;
+//    }
 }
 
 
-void Filter::init(const QPoint &center, const QImage &image, QRgb** matrix)
+void GaussianFilter::init(const QPoint &center, const QImage &image, QRgb** matrix)
 {
     QSize image_size = image.size();
     for (int row = 0; row < size; row++)
@@ -47,7 +59,7 @@ void Filter::init(const QPoint &center, const QImage &image, QRgb** matrix)
 }
 
 
-QRgb Filter::transform(QRgb **matrix)
+QRgb GaussianFilter::transform(QRgb **matrix)
 {
     double red = 0.0, blue = 0.0, green = 0.0;
     for (int row = 0; row < size; row++)
@@ -63,7 +75,7 @@ QRgb Filter::transform(QRgb **matrix)
 }
 
 
-QPoint Filter::getCoordinate(const QPoint &point, const QSize &image_size)
+QPoint GaussianFilter::getCoordinate(const QPoint &point, const QSize &image_size)
 {
     QPoint result(point);
 
@@ -75,7 +87,7 @@ QPoint Filter::getCoordinate(const QPoint &point, const QSize &image_size)
 }
 
 
-void Filter::normalize()
+void GaussianFilter::normalize()
 {
     double sum = getSum();
     for (int row = 0; row < size; row++)
@@ -87,18 +99,18 @@ void Filter::normalize()
     }
 }
 
-Filter::Filter(int radius, double sigma) : radius (radius), sigma (sigma)
+GaussianFilter::GaussianFilter(int radius, double sigma) : radius (radius), sigma (sigma)
 {
     initKernel();
     normalize();
 }
 
-Filter::~Filter()
+GaussianFilter::~GaussianFilter()
 {
     free();
 }
 
-void Filter::free()
+void GaussianFilter::free()
 {
     for (int row = 0; row < size; row++)
     {
@@ -107,7 +119,7 @@ void Filter::free()
     delete[] kernel;
 }
 
-double Filter::getSum() const
+double GaussianFilter::getSum() const
 {
     double result = 0.0;
     for (int row = 0; row < size; row++)
@@ -121,21 +133,20 @@ double Filter::getSum() const
     return result;
 }
 
-QImage Filter::apply(const QImage input)
+void GaussianFilter::apply(QImage &input)
 {
-    QImage output(input);
     QRgb **temp = new QRgb* [size];
     for (int row = 0; row < size; row++)
     {
         temp[row] = new QRgb [size];
     }
 
-    for (int row = 0; row < output.width(); row++)
+    for (int row = 0; row < input.width(); row++)
     {
-        for (int col = 0; col < output.height(); col++)
+        for (int col = 0; col < input.height(); col++)
         {
-            init(QPoint(row, col), output, temp);
-            output.setPixel(QPoint(row,col), transform(temp));
+            init(QPoint(row, col), input, temp);
+            input.setPixel(QPoint(row,col), transform(temp));
         }
     }
 
@@ -144,8 +155,6 @@ QImage Filter::apply(const QImage input)
         delete[] temp[row];
     }
     delete[] temp;
-
-    return output;
 }
 
 //Filter::Filter(const Filter &original):

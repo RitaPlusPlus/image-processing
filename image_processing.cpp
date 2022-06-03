@@ -1,11 +1,12 @@
 #include "image_processing.h"
 #include "ui_image_processing.h"
-#include "filter.h"
+#include "gaussian_filter.h"
+#include "laplacian_filter.h"
 #include <QString>
 #include <QPixmap>
 #include <QMessageBox>
 
-Image_Processing::Image_Processing(QWidget *parent)
+ImageProcessing::ImageProcessing(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Image_Processing)
 {
@@ -13,20 +14,27 @@ Image_Processing::Image_Processing(QWidget *parent)
 //    this->on_pushB_Upload_clicked();
 }
 
-Image_Processing::~Image_Processing()
+ImageProcessing::~ImageProcessing()
 {
     delete ui;
 } /* ~Image_Processing */
 
-void Image_Processing::on_pushB_Gaussian_clicked()
+void ImageProcessing::on_pushB_Gaussian_clicked()
 {
-    Filter blur(ui->radius_spin->value(), ui->sigma_spin->value()); // radius, sigma ( default)
-    this->sourceImage = blur.apply(this->sourceImage);
+    GaussianFilter blur(ui->radius_spin->value(), ui->sigma_spin->value()); // radius, sigma ( default)
+    blur.apply(this->sourceImage);
 
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }
 
-void Image_Processing::on_pushB_Upload_clicked()
+void ImageProcessing::on_pushB_Laplacian_clicked()
+{
+    LaplacianFilter edgeDetection;
+    this->sourceImage = edgeDetection.applyLaplacianGaussian(this->sourceImage, 0.5);
+    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+}
+
+void ImageProcessing::on_pushB_Upload_clicked()
 {
     //get the file image from
     QString filename;
@@ -53,7 +61,7 @@ void Image_Processing::on_pushB_Upload_clicked()
 }/* on_pushB_Upload_clicked */
 
 
-void Image_Processing::on_pushB_Download_clicked()
+void ImageProcessing::on_pushB_Download_clicked()
 {
     if (!sourceImage.isNull())
     {
@@ -72,7 +80,7 @@ void Image_Processing::on_pushB_Download_clicked()
 }/* on_pushB_Download_clicked */
 
 
-void Image_Processing::on_pushB_deleteImage_clicked()
+void ImageProcessing::on_pushB_deleteImage_clicked()
 {
     if (!sourceImage.isNull())
     {
@@ -84,4 +92,3 @@ void Image_Processing::on_pushB_deleteImage_clicked()
        QMessageBox::information(this, "Information", "There is no image to be deleted!",QMessageBox::Cancel);
      }
 }/* on_pushB_deleteImage_clicked */
-

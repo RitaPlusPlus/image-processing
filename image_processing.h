@@ -8,17 +8,19 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Image_Processing; }
 QT_END_NAMESPACE
 
-class Image_Processing : public QMainWindow
+class ImageProcessing : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Image_Processing(QWidget *parent = nullptr);
-    ~Image_Processing();
+    ImageProcessing(QWidget *parent = nullptr);
+    ~ImageProcessing();
 
 private slots:
 
     void on_pushB_Gaussian_clicked();
+
+    void on_pushB_Laplacian_clicked();
 
     void on_pushB_Upload_clicked();
 

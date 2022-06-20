@@ -2,6 +2,10 @@
 #include "ui_image_processing.h"
 #include "gaussian_filter.h"
 #include "laplacian_filter.h"
+#include "sharpening_filter.h"
+#include "canny_filter.h"
+
+
 #include <QString>
 #include <QPixmap>
 #include <QMessageBox>
@@ -33,6 +37,15 @@ void ImageProcessing::on_pushB_Laplacian_clicked()
     this->sourceImage = edgeDetection.applyLaplacianGaussian(this->sourceImage, 0.5);
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }
+
+void ImageProcessing::on_pushB_Sharp_clicked()
+{
+    Sharpening sharp;
+    sharp.applyS(this->sourceImage);
+    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+}
+
+
 
 void ImageProcessing::on_pushB_Upload_clicked()
 {
@@ -92,3 +105,6 @@ void ImageProcessing::on_pushB_deleteImage_clicked()
        QMessageBox::information(this, "Information", "There is no image to be deleted!",QMessageBox::Cancel);
      }
 }/* on_pushB_deleteImage_clicked */
+
+
+

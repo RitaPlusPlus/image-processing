@@ -28,6 +28,8 @@ private slots:
 
     void on_pushB_deleteImage_clicked();
 
+    void on_pushB_Sharp_clicked();
+
 private:
     Ui::Image_Processing *ui;
 

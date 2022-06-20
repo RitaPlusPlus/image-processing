@@ -2,9 +2,10 @@
 #include "ui_image_processing.h"
 #include "gaussian_filter.h"
 #include "laplacian_filter.h"
-#include "sharpening_filter.h"
-#include "canny_filter.h"
 
+#include "mean_filter.h"
+#include "gradient_filter.h"
+#include "convert_to_greyscale.h"
 
 #include <QString>
 #include <QPixmap>
@@ -38,13 +39,26 @@ void ImageProcessing::on_pushB_Laplacian_clicked()
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }
 
-void ImageProcessing::on_pushB_Sharp_clicked()
+void ImageProcessing::on_pushB_Mean_clicked()
 {
-    Sharpening sharp;
-    sharp.applyS(this->sourceImage);
+     MeanFilter mf;
+    this->sourceImage = mf.meanBlur(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }
 
+void ImageProcessing::on_pushB_Gradient_clicked()
+{
+   GradientFilter gf;
+   this->sourceImage = gf.gradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+   ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+}
+
+void ImageProcessing::on_pushB_convertGS_clicked()
+{
+    toGreyScale gs;
+    this->sourceImage = gs.convert(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+}
 
 
 void ImageProcessing::on_pushB_Upload_clicked()
@@ -105,6 +119,9 @@ void ImageProcessing::on_pushB_deleteImage_clicked()
        QMessageBox::information(this, "Information", "There is no image to be deleted!",QMessageBox::Cancel);
      }
 }/* on_pushB_deleteImage_clicked */
+
+
+
 
 
 

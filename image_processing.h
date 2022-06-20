@@ -28,7 +28,11 @@ private slots:
 
     void on_pushB_deleteImage_clicked();
 
-    void on_pushB_Sharp_clicked();
+    void on_pushB_Mean_clicked();
+
+    void on_pushB_Gradient_clicked();
+
+    void on_pushB_convertGS_clicked();
 
 private:
     Ui::Image_Processing *ui;

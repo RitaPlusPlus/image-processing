@@ -18,11 +18,13 @@ class Sharpening
 {
 public:
     Sharpening();
-    void filter(const QImage &in_image, QImage &out_image,double kernel[][KERN_SIZE]);
+    void filter(const QImage &in_image, QImage &out_image);//double kernel[][KERN_SIZE]);
     void applyS(QImage &in_image);
+    QRgb convolute(const QList<int> &kernel, const QImage &image, int x, int y);
 
-
-
+    private:
+        int x;
+        int y;
 };
 
 #endif // SHARPENING_FILTER_H

@@ -5,7 +5,7 @@
 
 #include "mean_filter.h"
 #include "gradient_filter.h"
-#include "convert_to_greyscale.h"
+#include "change_img_colour.h"
 
 #include <QString>
 #include <QPixmap>
@@ -42,21 +42,21 @@ void ImageProcessing::on_pushB_Laplacian_clicked()
 void ImageProcessing::on_pushB_Mean_clicked()
 {
      MeanFilter mf;
-    this->sourceImage = mf.meanBlur(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+    this->sourceImage = mf.applyMeanBlurFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }
 
 void ImageProcessing::on_pushB_Gradient_clicked()
 {
-   GradientFilter gf;
-   this->sourceImage = gf.gradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+   GradientFilter grf;
+   this->sourceImage = grf.applyGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }
 
 void ImageProcessing::on_pushB_convertGS_clicked()
 {
-    toGreyScale gs;
-    this->sourceImage = gs.convert(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+    BlckWhtclr bw;
+    this->sourceImage = bw.setBlckWht(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }
 

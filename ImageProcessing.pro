@@ -9,7 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    convert_to_greyscale.cpp \
+    change_img_colour.cpp \
     gaussian_filter.cpp \
     gradient_filter.cpp \
     laplacian_filter.cpp \
@@ -18,7 +18,7 @@ SOURCES += \
     mean_filter.cpp
 
 HEADERS += \
-    convert_to_greyscale.h \
+    change_img_colour.h \
     gaussian_filter.h \
     gradient_filter.h \
     image_processing.h \

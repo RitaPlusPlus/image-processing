@@ -3,15 +3,14 @@
 
 #include <QImage>
 
+#define MIN(x, y) (x < y ? x : y)
+#define MAX(x, y) (x > y ? x : y)
+
 class GradientFilter
 {
 public:
     GradientFilter();
-    QImage gradientFilter(const  uchar* imageData,const int width, const int height,const QImage::Format format);
-
-
-    QImage convertToGrayScale(const  uchar* imageData,const int width,const int height,const QImage::Format format);
-
+    QImage applyGradientFilter(const unsigned char* image, const int width, const int height, const QImage::Format f);
 };
 
 #endif // GRADIENT_FILTER_H

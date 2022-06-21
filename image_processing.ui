@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>948</width>
+    <width>1032</width>
     <height>490</height>
    </rect>
   </property>
@@ -224,6 +224,20 @@
            </property>
            <property name="text">
             <string>Mean filter</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushB_vSobel">
+           <property name="text">
+            <string>Vertical Sobel filter</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushB_hSobel">
+           <property name="text">
+            <string>Horizontal Sobel filter</string>
            </property>
           </widget>
          </item>

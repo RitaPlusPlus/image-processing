@@ -34,6 +34,10 @@ private slots:
 
     void on_pushB_convertGS_clicked();
 
+    void on_pushB_hSobel_clicked();
+
+    void on_pushB_vSobel_clicked();
+
 private:
     Ui::Image_Processing *ui;
 

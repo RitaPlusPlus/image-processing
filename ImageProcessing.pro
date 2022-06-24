@@ -12,18 +12,22 @@ SOURCES += \
     change_img_colour.cpp \
     gaussian_filter.cpp \
     gradient_filter.cpp \
+    horizontalsobel_filter.cpp \
     laplacian_filter.cpp \
     main.cpp \
     image_processing.cpp \
-    mean_filter.cpp
+    mean_filter.cpp \
+    verticalsobel_filter.cpp
 
 HEADERS += \
     change_img_colour.h \
     gaussian_filter.h \
     gradient_filter.h \
+    horizontalsobel_filter.h \
     image_processing.h \
     laplacian_filter.h \
-    mean_filter.h
+    mean_filter.h \
+    verticalsobel_filter.h
 
 FORMS += \
     image_processing.ui

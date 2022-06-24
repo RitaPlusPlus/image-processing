@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 # Team A: Low-level image processing
 
 ### Using programming language C++ and framework Qt implement a program that represents a system that applies different image processing algorithms on input images. The software must have the following features:

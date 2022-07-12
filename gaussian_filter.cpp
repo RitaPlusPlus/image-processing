@@ -8,7 +8,7 @@ double GaussianFilter::getGaussianKernelForPoint(const int row, const int col, c
 
 void GaussianFilter::initKernel()
 {
-//    // Gauusian
+    // Gaussian kernel
     if(radius > 0) {
         size = 2 * radius + (radius % 2);
         kernel = new double* [size];
@@ -22,27 +22,6 @@ void GaussianFilter::initKernel()
             }
         }
     }
-
-
-    // Laplacian
-//    if(radius > 0) {
-//        size = 3;
-//        kernel = new double* [size];
-
-//        for (int row = 0; row < size; row++)
-//        {
-//            kernel[row] = new double [size];
-//        }
-//        kernel[0][0] = 0;
-//        kernel[0][1] = -1;
-//        kernel[0][2] = 0;
-//        kernel[1][0] = -1;
-//        kernel[1][1] = 4;
-//        kernel[1][2] = -1;
-//        kernel[2][0] = 0;
-//        kernel[2][1] = -1;
-//        kernel[2][2] = 0;
-//    }
 }
 
 
@@ -61,6 +40,7 @@ void GaussianFilter::init(const QPoint &center, const QImage &image, QRgb** matr
 
 QRgb GaussianFilter::transform(QRgb **matrix)
 {
+    // applies the kernel
     double red = 0.0, blue = 0.0, green = 0.0;
     for (int row = 0; row < size; row++)
     {
@@ -77,6 +57,7 @@ QRgb GaussianFilter::transform(QRgb **matrix)
 
 QPoint GaussianFilter::getCoordinate(const QPoint &point, const QSize &image_size)
 {
+    // Get coordinate depending on the image size and the radius
     QPoint result(point);
 
     int xpos = result.x() - radius, ypos = result.y() - radius;
@@ -89,6 +70,7 @@ QPoint GaussianFilter::getCoordinate(const QPoint &point, const QSize &image_siz
 
 void GaussianFilter::normalize()
 {
+    // normalize with the kernel sum
     double sum = getSum();
     for (int row = 0; row < size; row++)
     {
@@ -121,6 +103,7 @@ void GaussianFilter::free()
 
 double GaussianFilter::getSum() const
 {
+    // Gets the sum of the kernel elements
     double result = 0.0;
     for (int row = 0; row < size; row++)
     {
@@ -150,56 +133,10 @@ void GaussianFilter::apply(QImage &input)
         }
     }
 
+    // erase the temp data
     for (int row = 0; row < size; row++)
     {
         delete[] temp[row];
     }
     delete[] temp;
 }
-
-//Filter::Filter(const Filter &original):
-//            radius_(original.radius_),
-//            diviation_(original.diviation_)
-//{
-//    size_ = 2 * radius_ + 1;
-//    matrix_ = new double* [size_];
-
-//    for (int i = 0; i < size_; i++)
-//        matrix_[i] = new double [size_];
-//    for (int i = 0; i < size_; i++)
-//        for (int j = 0; j < size_; j++)
-//            matrix_[i][j] = original.matrix_[i][j];
-//}
-
-//const Filter& Filter::operator = (const Filter &blur)
-//{
-//    if (this != &blur)
-//    {
-//        for (int i = 0; i < size_; i ++)
-//            delete[] matrix_[i];
-//        delete[] matrix_;
-
-//        radius_ = blur.radius_;
-//        diviation_ = blur.diviation_;
-//        size_ = blur.size_;
-//        matrix_ = new double* [size_];
-
-//        for (int i = 0; i < size_; i++)
-//            matrix_[i] = new double [size_];
-//        for (int i = 0; i < size_; i++)
-//            for (int j = 0; j < size_; j++)
-//                matrix_[i][j] = blur.matrix_[i][j];
-//    }
-//    return *this;
-//}
-
-
-//QTextStream &operator << (QTextStream &stream, const Filter &blur) {
-//    stream.setRealNumberPrecision(6);
-//    for (int i = 0; i < blur.size_; i++) {
-//        for (int j = 0; j < blur.size_; j++)
-//            stream << blur.matrix_[i][j] << " ";
-//        stream << Qt::endl;
-//    }
-//    return stream;
-//}

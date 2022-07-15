@@ -3,10 +3,10 @@
 horizontalSobelFilter::horizontalSobelFilter()
 {
 
-}
+}// Horizontal Sobel Filter
 
 
-QImage horizontalSobelFilter::horizontalSobelGradientFilter(const  uchar* imageData,const int width, const int height,const QImage::Format format)
+QImage horizontalSobelFilter::horizontalSobelGradientFilter(const  unsigned char* imageData,const int width, const int height,const QImage::Format f)
 {
     const int c = 2;
 
@@ -14,19 +14,18 @@ QImage horizontalSobelFilter::horizontalSobelGradientFilter(const  uchar* imageD
                           -c,0,c,
                           -1,0,1};
 
+    return applyHSFilter(imageData, width, height, f, 1, kernel, c+2 , &horizontalSobelFilter::applyConv);
+}// Horizontal Sobel Filter kernel
 
-    return applyFilter(imageData, width, height, format, 1, kernel, c+2 , &horizontalSobelFilter::applyConvolution);
-}
 
-
-QImage horizontalSobelFilter::applyFilter(const uchar *imageData, const int width, const int height, const QImage::Format format, const int kernelRadius, const int kernel[], const float kernelParameter,
-                                          QColor (*convolution)(const uchar *,const int, const int,
-                                                               const int , const int[], const float ,const int ,
+QImage horizontalSobelFilter::applyHSFilter(const unsigned char *imageData, const int width, const int height, const QImage::Format f, const int kernelRadius, const int kernel[], const double kernelParameter,
+                                          QColor (*convolution)(const unsigned char *,const int, const int,
+                                                               const int , const int[], const double ,const int ,
                                                                const int ,const int ))
 {
     const int kernelWidth = 2*kernelRadius +1;
-    QImage* imageFiltered = new QImage(width, height, format);
-    uchar* imageFilteredData = imageFiltered->bits();
+    QImage* newImage = new QImage(width, height, f);
+    unsigned char* newImageData = newImage->bits();
 
     for(int x= 0 ; x<width; x++)
     {
@@ -34,18 +33,18 @@ QImage horizontalSobelFilter::applyFilter(const uchar *imageData, const int widt
         {
             QColor color = convolution(imageData,width,height,kernelRadius,kernel,kernelParameter,kernelWidth,x,y);
             int index = 4*x + y * width*4 ;
-            imageFilteredData[index] = color.red();
-            imageFilteredData[index +1] = color.green();
-            imageFilteredData[index +2] = color.blue();
-            imageFilteredData[index +3] = color.alpha();
+            newImageData[index] = color.red();
+            newImageData[index +1] = color.green();
+            newImageData[index +2] = color.blue();
+            newImageData[index +3] = color.alpha();
         }
     }
-    return *imageFiltered;
-}
+    return *newImage;
+}// apply Horizontal Sobel Filter
 
 // A simple convolution function
-QColor horizontalSobelFilter::applyConvolution(const uchar *imageData,const int width, const int height,
-                                               const int kernelRadius, const int kernel[], const float kernelParameter,const int kernelWidth,
+QColor horizontalSobelFilter::applyConv(const unsigned char *imageData,const int width, const int height,
+                                               const int kernelRadius, const int kernel[], const double kernelParameter,const int kernelWidth,
                                                const int x,const int y)
 {
     int r = 0;
@@ -64,7 +63,7 @@ QColor horizontalSobelFilter::applyConvolution(const uchar *imageData,const int 
             int j = fmax(fmin(y+ky,height-1),0);
             QColor imageColor =  QColor(imageData[4*i +j* width*4], imageData[4*i +j* width*4 +1],imageData[4*i +j* width*4+2] ,imageData[4*i +j* width*4+3]) ;
 
-            float h = kernel[iKernel+ jKernel*kernelWidth] / kernelParameter;
+            double h = kernel[iKernel+ jKernel*kernelWidth] / kernelParameter;
             r = fminf( r + imageColor.red()   * h, 255.0f);
             g = fminf( g + imageColor.green()   * h, 255.0f);
             b = fminf( b + imageColor.blue()   * h, 255.0f);

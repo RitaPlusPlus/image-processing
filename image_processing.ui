@@ -17,13 +17,6 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="15" column="0">
-       <widget class="QPushButton" name="pushB_Upload">
-        <property name="text">
-         <string>Upload</string>
-        </property>
-       </widget>
-      </item>
       <item row="16" column="0">
        <widget class="QPushButton" name="pushB_Download">
         <property name="text">
@@ -31,10 +24,10 @@
         </property>
        </widget>
       </item>
-      <item row="16" column="1">
-       <widget class="QPushButton" name="pushB_deleteImage">
+      <item row="15" column="1">
+       <widget class="QPushButton" name="pushB_convertGS">
         <property name="text">
-         <string>Delete image</string>
+         <string>Convert the image to Grey scale</string>
         </property>
        </widget>
       </item>
@@ -45,10 +38,17 @@
         </property>
        </widget>
       </item>
-      <item row="15" column="1">
-       <widget class="QPushButton" name="pushB_convertGS">
+      <item row="16" column="1">
+       <widget class="QPushButton" name="pushB_deleteImage">
         <property name="text">
-         <string>Convert the image to Grey scale</string>
+         <string>Delete image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" rowspan="13" colspan="2">
+       <widget class="QLabel" name="label_image">
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -63,6 +63,13 @@
         </property>
         <property name="text">
          <string>Upload a picture to process:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0">
+       <widget class="QPushButton" name="pushB_Upload">
+        <property name="text">
+         <string>Upload</string>
         </property>
        </widget>
       </item>
@@ -242,13 +249,6 @@
           </widget>
          </item>
         </layout>
-       </widget>
-      </item>
-      <item row="2" column="0" rowspan="13" colspan="2">
-       <widget class="QLabel" name="label_image">
-        <property name="text">
-         <string/>
-        </property>
        </widget>
       </item>
      </layout>

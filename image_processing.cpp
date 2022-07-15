@@ -2,7 +2,6 @@
 #include "ui_image_processing.h"
 #include "gaussian_filter.h"
 #include "laplacian_filter.h"
-
 #include "mean_filter.h"
 #include "gradient_filter.h"
 #include "change_img_colour.h"
@@ -24,7 +23,7 @@ ImageProcessing::ImageProcessing(QWidget *parent)
 ImageProcessing::~ImageProcessing()
 {
     delete ui;
-} /* ~Image_Processing */
+}/* ~Image_Processing */
 
 void ImageProcessing::on_pushB_Gaussian_clicked()
 {
@@ -32,35 +31,35 @@ void ImageProcessing::on_pushB_Gaussian_clicked()
     blur.apply(this->sourceImage);
 
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}
+}/* on_pushB_Gaussian_clicked */
 
 void ImageProcessing::on_pushB_Laplacian_clicked()
 {
     LaplacianFilter edgeDetection;
     this->sourceImage = edgeDetection.applyLaplacianGaussian(this->sourceImage, 0.5);
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}
+}/* on_pushB_Laplacian_clicked */
 
 void ImageProcessing::on_pushB_Mean_clicked()
 {
      MeanFilter mf;
     this->sourceImage = mf.applyMeanBlurFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}
+}/* on_pushB_Mean_clicked */
 
 void ImageProcessing::on_pushB_Gradient_clicked()
 {
    GradientFilter grf;
    this->sourceImage = grf.applyGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}
+}/* on_pushB_Gradient_clicked */
 
 void ImageProcessing::on_pushB_convertGS_clicked()
 {
     BlckWhtclr bw;
     this->sourceImage = bw.setBlckWht(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}
+}/* on_pushB_convertGS_clicked */
 
 
 void ImageProcessing::on_pushB_Upload_clicked()
@@ -127,12 +126,12 @@ void ImageProcessing::on_pushB_hSobel_clicked()
      horizontalSobelFilter hsf;
     this->sourceImage = hsf.horizontalSobelGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}
+} /* on_pushB_hSobel_clicked */
 
 void ImageProcessing::on_pushB_vSobel_clicked()
 {
      verticalSobelFilter vsf;
     this->sourceImage = vsf.verticalSobelGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}
+}/* on_pushB_vSobel_clicked */
 

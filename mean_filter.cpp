@@ -8,16 +8,27 @@ QImage MeanFilter::applyMeanBlurFilter(const unsigned char* image, const int wid
 {
     const int kernel[9] = { 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
-    return applyMean(image, width, height, f, 1, kernel, 9.0 , &MeanFilter::conv);
+    return applyMean(image, width, height, f, 1, kernel, 9.0, &MeanFilter::conv);
 } /* applyMeanBlurFilter */
 
-QImage MeanFilter::applyMean(const unsigned char *image, const int width, const int height, const QImage::Format f,
-                                   const int radius_kernel,
-                                   const int kernel[],
-                                   const double parameter_kernel,
-                                   QColor (*conv)(const unsigned char *,const int, const int, const int,
-                                                  const int[], const double ,const int, const int, const int)
-                                   )
+QImage MeanFilter::applyMean( const unsigned char *image,
+                              const int width,
+                              const int height,
+                              const QImage::Format f,
+                              const int radius_kernel,
+                              const int kernel[],
+                              const double parameter_kernel,
+                              QColor (*conv)(  const unsigned char *image,
+                                               const int width,
+                                               const int height,
+                                               const int radius_kernel,
+                                               const int kernel[],
+                                               const double parameter_kernel,
+                                               const int width_kernel,
+                                               const int x,
+                                               const int y
+                                           )
+                             )
 {
     const int width_kernel = 2 * radius_kernel + 1;
     QImage* new_image = new QImage(width, height, f);
@@ -37,25 +48,25 @@ QImage MeanFilter::applyMean(const unsigned char *image, const int width, const 
         }
     }
     return (*new_image);
-}
+}/* applyMean */
 
-// A simple convolution function
-QColor MeanFilter::conv(const unsigned char *image,
-                        const int width,
-                        const int height,
-                        const int radius_kernel,
-                        const int kernel[],
-                        const double parameter_kernel,
-                        const int width_kernel,
-                        const int x,
-                        const int y
-                        )
+/* convolution function */
+QColor MeanFilter::conv( const unsigned char *image,
+                         const int width,
+                         const int height,
+                         const int radius_kernel,
+                         const int kernel[],
+                         const double parameter_kernel,
+                         const int width_kernel,
+                         const int x,
+                         const int y
+                       )
 {
     int r = 0;
     int g = 0;
     int b = 0;
 
-    for(int kx = -radius_kernel; kx <= radius_kernel; kx++)
+    for(int kx = - radius_kernel; kx <= radius_kernel; kx++)
     {
         int i_kernel = kx + radius_kernel;
 
@@ -65,7 +76,7 @@ QColor MeanFilter::conv(const unsigned char *image,
         {
             int j_kernel = ky + radius_kernel;
             /* index j of the neighboor pixel */
-            int j = fmax(fmin(y+ky,height-1),0);
+            int j = fmax(fmin(y + ky, height - 1), 0);
             QColor imageColor =  QColor(image[ 4 * i + j * width * 4],
                                         image[ 4 * i + j * width * 4 + 1],
                                         image[ 4 * i + j * width * 4 + 2],
@@ -73,13 +84,13 @@ QColor MeanFilter::conv(const unsigned char *image,
                                         );
 
             double h = kernel[ i_kernel+ j_kernel * width_kernel] / parameter_kernel;
-            r = fminf( r + imageColor.red()   * h, 255.0f);
-            g = fminf( g + imageColor.green()   * h, 255.0f);
-            b = fminf( b + imageColor.blue()   * h, 255.0f);
+            r = fminf( r + imageColor.red() * h, 255.0f);
+            g = fminf( g + imageColor.green() * h, 255.0f);
+            b = fminf( b + imageColor.blue() * h, 255.0f);
 
         }
     }
     return QColor(abs(r),abs(g),abs(b));
-}/* applyMean */
+}/* conv */
 
 

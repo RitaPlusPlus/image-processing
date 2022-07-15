@@ -8,9 +8,18 @@
 
 class GradientFilter
 {
-public:
-    GradientFilter();
-    QImage applyGradientFilter(const unsigned char* image, const int width, const int height, const QImage::Format f);
+    public:
+        //! Gradient filter
+        /*!
+            Gradient filter
+        */
+        GradientFilter();
+
+        //! apply Gradient filter
+        /*!
+            apply the Gradient filter
+        */
+        QImage applyGradientFilter(const unsigned char* image, const int width, const int height, const QImage::Format f);
 };
 
 #endif // GRADIENT_FILTER_H

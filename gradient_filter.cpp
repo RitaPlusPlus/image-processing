@@ -21,27 +21,27 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
     QImage* new_image = new QImage(width, height, f);
     unsigned char* filtered_image = new_image->bits();
 
-    for(int i = 0 ; i < width; i++)
+    for(int i = 0; i < width; i++)
     {
-        for (int j = 0 ; j < height; j++)
+        for (int j = 0; j < height; j++)
         {
-            double x_gradient[3] = {0.0,0.0,0.0};
-            double y_gradient[3] = {0.0,0.0,0.0};
+            double x_gradient[3] = {0.0, 0.0, 0.0};
+            double y_gradient[3] = {0.0, 0.0, 0.0};
 
             for (int k = -radius_kernel; k <= radius_kernel; k++)
             {
                 int x_k = k + radius_kernel;
-                int x = MAX(MIN(i + k, width - 1),0);
+                int x = MAX( MIN(i + k, width - 1),0);
 
                 for(int l = -radius_kernel; l <= radius_kernel; l++)
                 {
                     int y_k = l + radius_kernel;
-                    int y = MAX(MIN( j + l, height - 1), 0);
+                    int y = MAX( MIN( j + l, height - 1), 0);
 
                     int index = 4 * x + y * width * 4;
                     int red = image[index];
-                    int green = image[index + 1] ;
-                    int blue = image[index + 2] ;
+                    int green = image[index + 1];
+                    int blue = image[index + 2];
 
                     double h = x_kernel[x_k + y_k * width_kernel];
                     double hY = y_kernel[x_k + y_k * width_kernel];

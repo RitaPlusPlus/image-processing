@@ -77,6 +77,14 @@ void ImageProcessing::on_pushB_vSobel_clicked()
 }/* on_pushB_vSobel_clicked */
 
 
+void ImageProcessing::on_pushB_Noise_clicked()
+{
+    MedianFilter noiseReduction;
+    this->sourceImage = noiseReduction.applyMedianFilter(sourceImage.constBits(), sourceImage.width(), sourceImage.height(), sourceImage.format());
+    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+}/* on_pushB_Noise_clicked */
+
+
 void ImageProcessing::on_pushB_Upload_clicked()
 {
     //get the file image from
@@ -135,6 +143,7 @@ void ImageProcessing::on_pushB_deleteImage_clicked()
        QMessageBox::information(this, "Information", "There is no image to be deleted!",QMessageBox::Cancel);
      }
 }/* on_pushB_deleteImage_clicked */
+
 
 
 

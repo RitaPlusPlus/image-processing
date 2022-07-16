@@ -7,40 +7,41 @@ MedianFilter::MedianFilter()
 
 }
 
-QImage MedianFilter::applyMedianFilter(const uchar* imageData, const int width, const int height, QImage::Format format)
+QImage MedianFilter::applyMedianFilter(const uchar* image_bits, const int row, const int col, QImage::Format image_format)
 {
-    QImage filteredImage(width,height, format);
-    uchar* filteredImageData = filteredImage.bits();
-    int kernelRadius = 1;
+    QImage new_image(row ,col , image_format);
+    uchar* new_image_bits = new_image.bits();
+    std::vector<int> median;
+    median.reserve(9);
+    int kernel = 1;
 
-    //list of neighborhood values
-    std::vector<int> medianList;
-    medianList.reserve(9);
-    for(int i=0; i<width; i++)
+
+    for(int i = 0; i < row; i++)
     {
-        for(int j=0; j<height; j++)
+        for(int j = 0; j < col; j++)
         {
-            medianList.clear();
-
-            for(int ki=-kernelRadius; ki<=kernelRadius; ki++)
+            median.clear();
+            for(int ki = -kernel; ki <= kernel; ki++)
             {
-                int x = fmax(fmin(i+ki,width-1),0);
-                for(int kj=-kernelRadius; kj<=kernelRadius; kj++)
+                int x = fmax(fmin(i + ki, row - 1), 0);
+                for(int kj = -kernel; kj <= kernel; kj++)
                 {
-                    int y = fmax(fmin(j+kj,height-1),0);
-                    int index = 4*x+ y*width*4;
-                    medianList.push_back(imageData[index]);
+                    int y = fmax(fmin(j + kj, col - 1) , 0);
+                    int index = 4 * x + y * row * 4;
+                    median.push_back(image_bits[index]);
                 }
             }
-            // Find the median value
-            std::sort(medianList.begin(),medianList.end());
-            int medianValue = medianList[medianList.size()/2 ];
-            int id = 4*i+ j*width*4;
-            filteredImageData[id] = medianValue;
-            filteredImageData[id+1] = medianValue;
-            filteredImageData[id+2] = medianValue;
-            filteredImageData[id+3] = 255.0f;
+
+            std::sort(median.begin(),median.end());
+
+            int median_elem = median[median.size() /2 ];
+            int id = 4 * i + j * row * 4;
+
+            new_image_bits[id] = median_elem;
+            new_image_bits[id+1] = median_elem;
+            new_image_bits[id+2] = median_elem;
+            new_image_bits[id+3] = 255.0f;
         }
     }
-    return filteredImage;
+    return new_image;
 }

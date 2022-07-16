@@ -77,7 +77,9 @@ class ImageProcessing : public QMainWindow
         */
         void on_pushB_deleteImage_clicked();
 
-    private:
+        void on_pushB_Noise_clicked();
+
+private:
         Ui::Image_Processing *ui;
 
         QImage sourceImage;

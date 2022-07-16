@@ -21,7 +21,7 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
     QImage* new_image = new QImage(width, height, f);
     unsigned char* filtered_image = new_image->bits();
 
-    for(int i = 0; i < width; i++)
+    for (int i = 0; i < width; i++)
     {
         for (int j = 0; j < height; j++)
         {
@@ -33,7 +33,7 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
                 int x_k = k + radius_kernel;
                 int x = MAX( MIN(i + k, width - 1),0);
 
-                for(int l = -radius_kernel; l <= radius_kernel; l++)
+                for (int l = -radius_kernel; l <= radius_kernel; l++)
                 {
                     int y_k = l + radius_kernel;
                     int y = MAX( MIN( j + l, height - 1), 0);

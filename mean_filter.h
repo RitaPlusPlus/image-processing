@@ -2,6 +2,7 @@
 #define MEAN_FILTER_H
 
 #include <QImage>
+// https://jeheonpark93.medium.com/vc-convolution-based-image-denoising-sharpening-332bbe6293ff
 
 using namespace std;
 
@@ -31,7 +32,7 @@ class MeanFilter
                            const int radius_kernel,
                            const int kernel[],
                            const double parameter_kernel,
-                           QColor (*conv)(  const unsigned char *image,
+                           QColor (*convolution)(  const unsigned char *image,
                                             const int width,
                                             const int height,
                                             const int radius_kernel,
@@ -42,8 +43,10 @@ class MeanFilter
                                             const int y
                                         )
                           );
-
-        /* convolution function */
+        //! convolution function
+        /*!
+            convolution function
+        */
         static QColor conv( const unsigned char *image,
                             const int width,
                             const int height,

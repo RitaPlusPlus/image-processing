@@ -61,6 +61,20 @@ void ImageProcessing::on_pushB_convertGS_clicked()
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }/* on_pushB_convertGS_clicked */
 
+void ImageProcessing::on_pushB_hSobel_clicked()
+{
+    horizontalSobelFilter hsf;
+    this->sourceImage = hsf.horizontalSobelGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+} /* on_pushB_hSobel_clicked */
+
+void ImageProcessing::on_pushB_vSobel_clicked()
+{
+    verticalSobelFilter vsf;
+    this->sourceImage = vsf.verticalSobelGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
+}/* on_pushB_vSobel_clicked */
+
 
 void ImageProcessing::on_pushB_Upload_clicked()
 {
@@ -121,17 +135,5 @@ void ImageProcessing::on_pushB_deleteImage_clicked()
      }
 }/* on_pushB_deleteImage_clicked */
 
-void ImageProcessing::on_pushB_hSobel_clicked()
-{
-     horizontalSobelFilter hsf;
-    this->sourceImage = hsf.horizontalSobelGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
-    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-} /* on_pushB_hSobel_clicked */
 
-void ImageProcessing::on_pushB_vSobel_clicked()
-{
-     verticalSobelFilter vsf;
-    this->sourceImage = vsf.verticalSobelGradientFilter(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
-    ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
-}/* on_pushB_vSobel_clicked */
 

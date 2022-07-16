@@ -13,7 +13,7 @@ QImage BlckWhtclr::setBlckWht(const unsigned char* image, const int width, const
                                                  */
                                                 /* bw stands for a black-white coloured image */
 
-    for (int i = 0; i < height * width * 4; i += 4 )
+    for (int i = 0; i < height * width * 4; i += 4 ) /* 4 -> RGBA */
     {
         /* converting RGB to Greyscale
          * The Weighted method (Luminosity method) weighs red, green, and blue according to their wavelengths,

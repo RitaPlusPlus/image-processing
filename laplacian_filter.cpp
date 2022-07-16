@@ -3,7 +3,7 @@
 LaplacianFilter::LaplacianFilter()
 {
 
-}
+}/* LaplacianFilter */
 
 /*Gaussian Laplacian edge detection*/
 QImage LaplacianFilter::applyLaplacianGaussian(const QImage &image,double scale)
@@ -46,7 +46,7 @@ QImage LaplacianFilter::applyLaplacianGaussian(const QImage &image,double scale)
         }
     }
     return newImage;
-}
+}/* applyLaplacianGaussian */
 
 /*Laplace edge detection scale scale to scale the difference result mode is to select which method 0 only shows positive edges, 1 only shows negative edges, 2 shows all edges, 3 uses both high gray and low gray Show positive and negative edges separately*/
 QImage LaplacianFilter::applyLaplacian(const QImage &image,double scale,int mode)
@@ -121,4 +121,4 @@ QImage LaplacianFilter::applyLaplacian(const QImage &image,double scale,int mode
         }
     }
     return newImage;
-}
+}/* applyLaplacian */

@@ -7,6 +7,7 @@
 #include "change_img_colour.h"
 #include "horizontalsobel_filter.h"
 #include "verticalsobel_filter.h"
+#include "median_filter.h"
 
 #include <QString>
 #include <QPixmap>

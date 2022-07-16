@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     image_processing.cpp \
     mean_filter.cpp \
+    median_filter.cpp \
     verticalsobel_filter.cpp
 
 HEADERS += \
@@ -27,6 +28,7 @@ HEADERS += \
     image_processing.h \
     laplacian_filter.h \
     mean_filter.h \
+    median_filter.h \
     verticalsobel_filter.h
 
 FORMS += \

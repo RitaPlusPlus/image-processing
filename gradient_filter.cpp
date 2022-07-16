@@ -1,6 +1,8 @@
 #include "gradient_filter.h"
 #include <cmath>
 
+using namespace std;
+
 GradientFilter::GradientFilter()
 {
 }/* GradientFilter */

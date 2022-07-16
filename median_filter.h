@@ -1,11 +1,13 @@
-#ifndef MEDIAN_FILTER_H
-#define MEDIAN_FILTER_H
+#ifndef MEDIANFILTER_H
+#define MEDIANFILTER_H
 
+#include <QImage>
 
-class median_filter
+class MedianFilter
 {
 public:
-    median_filter();
+    MedianFilter();
+    QImage applyMedianFilter(const uchar* imageData, const int width, const int height, QImage::Format format);
 };
 
-#endif // MEDIAN_FILTER_H
+#endif // MEDIANFILTER_H

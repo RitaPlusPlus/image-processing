@@ -235,7 +235,28 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Noise reduction</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushB_vSobel">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Vertical Sobel filter</string>
            </property>
@@ -243,6 +264,13 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushB_hSobel">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Horizontal Sobel filter</string>
            </property>

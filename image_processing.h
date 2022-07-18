@@ -35,6 +35,12 @@ class ImageProcessing : public QMainWindow
         */
         void on_pushB_Mean_clicked();
 
+        //! Click handler on Median filter selected
+        /*!
+             apply Median filter
+        */
+         void on_pushB_Noise_clicked();
+
         //! Click handler on Gradient filter selected
         /*!
              apply Gradient filter
@@ -77,7 +83,7 @@ class ImageProcessing : public QMainWindow
         */
         void on_pushB_deleteImage_clicked();
 
-        void on_pushB_Noise_clicked();
+
 
 private:
         Ui::Image_Processing *ui;

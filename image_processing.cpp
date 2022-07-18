@@ -13,6 +13,8 @@
 #include <QPixmap>
 #include <QMessageBox>
 
+//https://doc.qt.io/qt-6/qtwidgets-painting-imagecomposition-example.html -- 2 windows idea
+
 ImageProcessing::ImageProcessing(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Image_Processing)

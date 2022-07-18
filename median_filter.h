@@ -5,9 +5,21 @@
 
 class MedianFilter
 {
-public:
-    MedianFilter();
-    QImage applyMedianFilter(const uchar* imageData, const int width, const int height, QImage::Format format);
+    public:
+        //! Median filter
+        /*!
+            Median filter
+        */
+        MedianFilter();
+
+        //! apply Median filter
+        /*!
+            apply Median filter
+        */
+        QImage applyMedianFilter(const unsigned char* image_bits, const int row, const int col, QImage::Format image_format);
 };
 
 #endif // MEDIANFILTER_H
+
+
+

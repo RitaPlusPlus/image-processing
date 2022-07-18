@@ -34,9 +34,11 @@ QImage MeanFilter::applyMean( const unsigned char *image,
                                            )
                              )
 {
-    const int width_kernel = 2 * radius_kernel + 1;
+    const int width_kernel = 2 * radius_kernel + 1;  
+
     QImage* new_image = new QImage(width, height, f);
     unsigned char* filtered_image = new_image->bits();
+
 
     for (int x = 0; x < width; x++)
     {

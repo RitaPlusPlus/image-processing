@@ -232,7 +232,7 @@ background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:0, y2:0,stop:
             </font>
            </property>
            <property name="text">
-            <string>Noise reduction</string>
+            <string>Median filter</string>
            </property>
           </widget>
          </item>

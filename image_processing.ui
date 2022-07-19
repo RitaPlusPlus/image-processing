@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1003</width>
-    <height>529</height>
+    <width>923</width>
+    <height>608</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,41 +17,6 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="16" column="0">
-       <widget class="QPushButton" name="pushB_Download">
-        <property name="text">
-         <string>Save image</string>
-        </property>
-       </widget>
-      </item>
-      <item row="15" column="1">
-       <widget class="QPushButton" name="pushB_convertGS">
-        <property name="text">
-         <string>Convert an image to Greyscale</string>
-        </property>
-       </widget>
-      </item>
-      <item row="16" column="2">
-       <widget class="QPushButton" name="pushB_Cancel">
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="16" column="1">
-       <widget class="QPushButton" name="pushB_deleteImage">
-        <property name="text">
-         <string>Delete image</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" rowspan="13" colspan="2">
-       <widget class="QLabel" name="label_image">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0" colspan="3">
        <widget class="QLabel" name="label_title">
         <property name="font">
@@ -62,18 +27,32 @@
          </font>
         </property>
         <property name="text">
-         <string>Upload a picture to process:</string>
+         <string>Upload an image to process:</string>
         </property>
        </widget>
       </item>
-      <item row="15" column="0">
-       <widget class="QPushButton" name="pushB_Upload">
+      <item row="16" column="2">
+       <widget class="QPushButton" name="pushB_Cancel">
         <property name="text">
-         <string>Upload</string>
+         <string>Cancel</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="2" rowspan="4">
+      <item row="15" column="2">
+       <widget class="QPushButton" name="pushB_deleteImage">
+        <property name="text">
+         <string>Delete image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="2">
+       <widget class="QPushButton" name="pushB_Download">
+        <property name="text">
+         <string>Save image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" rowspan="10">
        <widget class="QGroupBox" name="groupB_filters">
         <property name="font">
          <font>
@@ -83,7 +62,7 @@
          </font>
         </property>
         <property name="title">
-         <string>Filters:</string>
+         <string/>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
@@ -277,6 +256,41 @@
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>18</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Filters to apply:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="0">
+       <widget class="QPushButton" name="pushB_Upload">
+        <property name="text">
+         <string>Upload</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="1">
+       <widget class="QPushButton" name="pushB_convertGS">
+        <property name="text">
+         <string>Convert to Greyscale</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" rowspan="15" colspan="2">
+       <widget class="QLabel" name="label_image">
+        <property name="text">
+         <string/>
+        </property>
        </widget>
       </item>
      </layout>

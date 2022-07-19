@@ -6,12 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>923</width>
+    <width>967</width>
     <height>608</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Image_Processing</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:0, y2:0,stop:0 rgba(204, 204, 255, 100), stop:1 rgba( 153, 204, 255,100));
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -27,7 +33,10 @@
          </font>
         </property>
         <property name="text">
-         <string>Upload an image to process:</string>
+         <string>A Visual Tool to apply Image Processing Filters</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -286,10 +295,24 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" rowspan="15" colspan="2">
+      <item row="2" column="0" rowspan="14" colspan="2">
        <widget class="QLabel" name="label_image">
         <property name="text">
          <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>18</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Upload an image to process:</string>
         </property>
        </widget>
       </item>

@@ -18,6 +18,7 @@ QImage MedianFilter::applyMedianFilter(const unsigned char* image_bits, const in
 
     int radius_kernel = 1;
 
+    /* iterate trough the width and height of the image*/
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
@@ -26,9 +27,11 @@ QImage MedianFilter::applyMedianFilter(const unsigned char* image_bits, const in
 
             for (int ki = -radius_kernel; ki <= radius_kernel; ki++)
             {
+                /* index x of the neighboor pixel */
                 int x = fmax( fmin(i + ki, row - 1), 0);
                 for (int kj = -radius_kernel; kj <= radius_kernel; kj++)
                 {
+                     /* index y of the neighboor pixel */
                     int y = fmax(fmin(j + kj, col - 1) , 0);
                     int index = 4 * x + y * row * 4;
                     median.push_back(image_bits[index]);
@@ -37,9 +40,11 @@ QImage MedianFilter::applyMedianFilter(const unsigned char* image_bits, const in
 
             sort(median.begin(), median.end());
 
+            /* find the median in the array */
             int median_elem = median[median.size() / 2 ];
             int id = 4 * i + j * row * 4;
 
+            /* compute the resulting image by using the medians */
             new_image_bits[id] = median_elem;
             new_image_bits[id + 1] = median_elem;
             new_image_bits[id + 2] = median_elem;

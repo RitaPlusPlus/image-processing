@@ -12,6 +12,8 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
 {
     //https://homepages.inf.ed.ac.uk/rbf/HIPR2/sobel.htm
     //https://www.slideshare.net/PreethaHelen/sharpening-spatial-filters-67662870
+    //https://medium.com/jun94-devpblog/cv-3-gradient-and-laplacian-filter-difference-of-gaussians-dog-7c22e4a9d6cc
+
     const int n = 2; /* from Sobel is this 2, but we can also use 1 instead that comes from Prewitt */
     //Sobel's Method
     const int x_kernel[9] = {-1, 0, 1, -n, 0, n, -1, 0, 1};

@@ -59,8 +59,8 @@ void ImageProcessing::on_pushB_Gradient_clicked()
 
 void ImageProcessing::on_pushB_convertGS_clicked()
 {
-    BlckWhtclr bw;
-    this->sourceImage = bw.setBlckWht(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
+    GrayscaleImg gs;
+    this->sourceImage = gs.setGrscl(sourceImage.constBits(),sourceImage.width(),sourceImage.height(),sourceImage.format());
     ui->label_image->setPixmap(QPixmap::fromImage(this->sourceImage));
 }/* on_pushB_convertGS_clicked */
 

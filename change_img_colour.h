@@ -4,20 +4,20 @@
 #include <QImage>
 // https://doc.qt.io/qt-6/qimage.html#bits
 // https://www.dynamsoft.com/blog/insights/image-processing/image-processing-101-color-space-conversion/
-class BlckWhtclr
+class GrayscaleImg
 {
     public:
-        //! Black and White colour
+        //! Grayscale image
         /*!
-            Black and White colour
+            Grayscale image
         */
-        BlckWhtclr();
+        GrayscaleImg();
 
-        //! set Black and White colour
+        //! set to Grayscale
         /*!
-            change the colour of the uploaded image to be Black and White
+            change the colour of the uploaded image to different shades of gray
         */
-        QImage setBlckWht(const unsigned char* img, const int width, const int height, const QImage::Format f);
+        QImage setGrscl(const unsigned char* img, const int width, const int height, const QImage::Format f);
 };
 
 #endif // CHANGE_IMG_COLOUR_H

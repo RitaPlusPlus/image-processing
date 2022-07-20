@@ -10,7 +10,10 @@ GradientFilter::GradientFilter()
 
 QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int width, const int height, const QImage::Format f)
 {
+    //https://homepages.inf.ed.ac.uk/rbf/HIPR2/sobel.htm
+    //https://www.slideshare.net/PreethaHelen/sharpening-spatial-filters-67662870
     const int n = 2; /* from Sobel is this 2, but we can also use 1 instead that comes from Prewitt */
+    //Sobel's Method
     const int x_kernel[9] = {-1, 0, 1, -n, 0, n, -1, 0, 1};
     const int y_kernel[9] = {-1, -n, -1, 0, 0, 0, 1, n, 1};
 

@@ -11,7 +11,9 @@ horizontalSobelFilter::horizontalSobelFilter()
 
 QImage horizontalSobelFilter::horizontalSobelGradientFilter(const unsigned char* image, const int width, const int height, const QImage::Format f)
 {
-    const int kernel[9] = { -1, 0, 1, -2, 0, 2, -1, 0, 1};
+    const int kernel[9] = { -1, -2, -1,
+                             0, 0, 0,
+                             1, 2, 1};
 
     return applyHSFilter(image, width, height, f, 1, kernel, 2 + 2 , &horizontalSobelFilter::conv);
 }/* horizontalSobelGradientFilter */

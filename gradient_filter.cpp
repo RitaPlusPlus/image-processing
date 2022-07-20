@@ -16,8 +16,13 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
 
     const int n = 2; /* from Sobel is this 2, but we can also use 1 instead that comes from Prewitt */
     //Sobel's Method
-    const int x_kernel[9] = {-1, 0, 1, -n, 0, n, -1, 0, 1};
-    const int y_kernel[9] = {-1, -n, -1, 0, 0, 0, 1, n, 1};
+    const int x_kernel[9] = {-1, 0, 1, //Gx
+                             -n, 0, n,
+                             -1, 0, 1};
+
+    const int y_kernel[9] = {-1, -n, -1, //Gy
+                              0, 0, 0,
+                              1, n, 1};
 
     const int radius_kernel = 1;
     const int width_kernel = 3;
@@ -30,8 +35,8 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
     {
         for (int j = 0; j < height; j++)
         {
-            double x_gradient[3] = {0.0, 0.0, 0.0};
-            double y_gradient[3] = {0.0, 0.0, 0.0};
+            double x_gradient[3] = {0.0f, 0.0f, 0.0f};
+            double y_gradient[3] = {0.0f, 0.0f, 0.0f};
 
             for (int k = -radius_kernel; k <= radius_kernel; k++)
             {
@@ -48,12 +53,13 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
                     int green = image[index + 1];
                     int blue = image[index + 2];
 
-                    double h = x_kernel[x_k + y_k * width_kernel];
-                    double hY = y_kernel[x_k + y_k * width_kernel];
+                    /* calculating the gradients using Sobel's method */
+                    double hX = x_kernel[x_k + y_k * width_kernel]; /* using vertical kenel */
+                    double hY = y_kernel[x_k + y_k * width_kernel]; /* using horizontal kernel */
 
-                    x_gradient[0] += (red * h);
-                    x_gradient[1] += (green * h);
-                    x_gradient[2] += (blue * h);
+                    x_gradient[0] += (red * hX);
+                    x_gradient[1] += (green * hX);
+                    x_gradient[2] += (blue * hX);
 
                     y_gradient[0] += (red * hY);
                     y_gradient[1] += (green * hY);

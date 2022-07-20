@@ -15,7 +15,7 @@ QImage BlckWhtclr::setBlckWht(const unsigned char* image, const int width, const
 
     for (int i = 0; i < height * width * 4; i += 4 ) /* 4 -> RGBA */
     {
-        /* converting RGB to Greyscale
+        /* converting RGBА to Greyscale
          * The Weighted method (Luminosity method) weighs red, green, and blue according to their wavelengths,
          * following is the formula: Grayscale = 0.299R + 0.587G + 0.114B.
         */

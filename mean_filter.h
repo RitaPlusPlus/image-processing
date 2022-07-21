@@ -57,6 +57,7 @@ class MeanFilter
                             const int x,
                             const int y
                           );
+
 };
 
 #endif // MEAN_FILTER_H

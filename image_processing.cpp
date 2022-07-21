@@ -20,7 +20,6 @@ ImageProcessing::ImageProcessing(QWidget *parent)
     , ui(new Ui::Image_Processing)
 {
     ui->setupUi(this);
-//    this->on_pushB_Upload_clicked();
 }
 
 ImageProcessing::~ImageProcessing()

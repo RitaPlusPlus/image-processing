@@ -16,14 +16,13 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
 
     const int n = 2; /* from Sobel is this 2, but we can also use 1 instead that comes from Prewitt */
     //Sobel's Method
-    const int x_kernel[9] = {-1, -n, -1, //Gx
+    const int x_kernel[9] = {-1, 0, 1, //Gx
+                             -n, 0, n,
+                             -1, 0, 1};
+
+    const int y_kernel[9] = {-1, -n, -1, //Gy
                               0, 0, 0,
                               1, n, 1};
-
-
-    const int y_kernel[9] =  {-1, 0, 1,  //Gy
-                              -n, 0, n,
-                              -1, 0, 1};
 
     const int radius_kernel = 1;
     const int width_kernel = 3;
@@ -55,8 +54,8 @@ QImage GradientFilter::applyGradientFilter(const unsigned char* image, const int
                     int blue = image[index + 2];
 
                     /* calculating the gradients using Sobel's method */
-                    double hX = x_kernel[x_k + y_k * width_kernel]; /* using horizontal kenel */
-                    double hY = y_kernel[x_k + y_k * width_kernel]; /* using vertical kernel */
+                    double hX = x_kernel[x_k + y_k * width_kernel];
+                    double hY = y_kernel[x_k + y_k * width_kernel];
 
                     x_gradient[0] += (red * hX);
                     x_gradient[1] += (green * hX);

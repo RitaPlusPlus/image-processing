@@ -237,20 +237,6 @@ background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:0, y2:0,stop:
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushB_vSobel">
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>13</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Vertical Sobel filter</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="pushB_hSobel">
            <property name="font">
             <font>
@@ -260,7 +246,21 @@ background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:0, y2:0,stop:
             </font>
            </property>
            <property name="text">
-            <string>Horizontal Sobel filter</string>
+            <string>Horizontal Sobel filter (in x direction)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushB_vSobel">
+           <property name="font">
+            <font>
+             <family>Arial</family>
+             <pointsize>13</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Vertical Sobel filter (in y direction)</string>
            </property>
           </widget>
          </item>
